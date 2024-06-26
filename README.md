@@ -7,6 +7,10 @@ npm run dev
 open http://localhost:3000
 ```
 
+Basic auth:
+
+- hono/just4fun
+
 To view all task
 
 - http://localhost:3000/todo
