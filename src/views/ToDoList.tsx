@@ -1,5 +1,3 @@
-/** @jsx jsx */
-/** @jsxImportSource hono/jsx */
 import {
   todoItem,
   todoItem__id,
@@ -11,6 +9,7 @@ import {
   todoList__add,
   todoList__add__btn,
   todoList__items,
+  todoList__header,
 } from './styles';
 import { Style, cx } from 'hono/css';
 import { ToDoItemType } from '../types';
@@ -37,14 +36,16 @@ export const ToDoList = ({ list }: { list: ToDoItemType[] }) => {
   return (
     <div class={todoList__container}>
       <Style />
-      {!list.length && <h4>No todo item yet!</h4>}
+      {!list.length && <h4 class={todoList__header}>No todo item yet!</h4>}
       <div class={todoList__add}>
         <input id='newTaskInput' placeholder='Add new task' />
         <button id='addNewTaskBtn' class={todoList__add__btn}>
           Add
         </button>
       </div>
-      <div class={todoList__items}>{list.length && list.map((item) => <ToDoItem {...item} />)}</div>
+      <div class={todoList__items}>
+        {list.length > 0 && list.map((item) => <ToDoItem {...item} />)}
+      </div>
     </div>
   );
 };

@@ -3,8 +3,6 @@ import { Style } from 'hono/css';
 import { ToDoList } from './ToDoList';
 import { ToDoItemType } from '../types';
 import { todoList__header } from './styles';
-/** @jsx jsx */
-/** @jsxImportSource hono/jsx */
 
 interface SiteData {
   title: string;
@@ -26,7 +24,6 @@ const Layout = (props: SiteData) => html`
       // Add
       document.getElementById('addNewTaskBtn').addEventListener('click', function () {
         const newTask = document.getElementById('newTaskInput').value;
-        console.log('oh task', newTask);
         fetch('/todo', {
           method: 'POST',
           headers: {

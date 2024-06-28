@@ -2,7 +2,6 @@ import { Hono } from 'hono';
 // import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 import { basicAuth } from 'hono/basic-auth';
 import { Content } from './views/Layout';
-
 import { getTodos, getTodo, addTodo, editTodo, deleteTodo } from './services/handleTodos.js';
 
 export const app = new Hono();
@@ -69,7 +68,6 @@ app.put('/todo/:id', async (c) => {
 
 app.delete('/todo/:id', async (c) => {
   const tid = c.req.param('id');
-  console.log('hello~', tid);
   await deleteTodo(Number(tid));
-  return c.text('deleted!');
+  return c.text(`#${tid} was deleted!`);
 });

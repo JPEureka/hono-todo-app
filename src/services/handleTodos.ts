@@ -2,14 +2,14 @@ import { db } from '../db';
 import { ToDoItemDB, ToDoItemType } from '../types';
 
 export async function getTodos() {
-  const list = db.prepare('SELECT * FROM todos').all();
+  const list = db.prepare('SELECT * FROM todos').all() as ToDoItemDB[];
   return list?.map((item: ToDoItemDB) => {
     return { id: item.id, taskName: item.name, status: item.status };
   });
 }
 
 export async function getTodo(id: number): Promise<ToDoItemType | null> {
-  const item = db.prepare('SELECT * FROM todos WHERE id = ?').get(id);
+  const item = db.prepare('SELECT * FROM todos WHERE id = ?').get(id) as ToDoItemDB;
   return item ? { id: item.id, taskName: item.name, status: item.status } : null;
 }
 
@@ -33,7 +33,6 @@ export function editTodo({
   name?: string;
   status?: string;
 }): void {
-  console.log('ready to edit', id, name, status);
   if (!name && !status) {
     console.log('nothing to update!');
     return;

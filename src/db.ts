@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Database from 'better-sqlite3';
 export const db = new Database('todos.db');
 
